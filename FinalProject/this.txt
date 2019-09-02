@@ -1,0 +1,7 @@
+make
+./test-trans -M 32 -N 32
+./csim-ref -v -s 5 -E 1 -b 5 -t trace.f0
+./driver.py
+
+
+//https://www.daniweb.com/programming/software-development/code/216270/parsing-a-string-by-lines

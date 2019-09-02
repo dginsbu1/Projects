@@ -1,0 +1,52 @@
+*** This is NuSMV 2.6.0 (compiled on Wed Oct 14 15:36:00 2015)
+*** Enabled addons are: compass
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Please report bugs to <Please report bugs to <nusmv-users@fbk.eu>>
+
+*** Copyright (c) 2010-2014, Fondazione Bruno Kessler
+
+*** This version of NuSMV is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of NuSMV is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+WARNING *** This version of NuSMV is linked to the zchaff SAT         ***
+WARNING *** solver (see http://www.princeton.edu/~chaff/zchaff.html). ***
+WARNING *** Zchaff is used in Bounded Model Checking when the         ***
+WARNING *** system variable "sat_solver" is set to "zchaff".          ***
+WARNING *** Notice that zchaff is for non-commercial purposes only.   ***
+WARNING *** NO COMMERCIAL USE OF ZCHAFF IS ALLOWED WITHOUT WRITTEN    ***
+WARNING *** PERMISSION FROM PRINCETON UNIVERSITY.                     ***
+WARNING *** Please contact Sharad Malik (malik@ee.princeton.edu)      ***
+WARNING *** for details.                                              ***
+
+-- specification  G !((add != 0 & sub = 0) & !((a.output - b.output = c.output & d.output = "-") | (a.output + b.output = c.output & d.output = "+")))    is false
+-- as demonstrated by the following execution sequence
+Trace Description: BMC Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    a.output = 4
+    b.output = 1
+    c.output = 1
+    d.output = "-"
+    d.mini = 20
+    d.pls = 1
+    sub = 0
+    add = 5
+    used = 100
+    pls = 1
+    mini = 20
+    a.pls = 1
+    a.mini = 20
+    a.used = 0
+    b.pls = 1
+    b.mini = 20
+    b.used = -60
+    c.pls = 1
+    c.mini = 20
+    c.used = -80
+    d.used = -100

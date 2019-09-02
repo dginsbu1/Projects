@@ -1,0 +1,1 @@
+/usr/bin/cc -g  -Wl,--enable-auto-import CMakeFiles/c.dir/Imperative/Processor.c.o  -o c.exe -Wl,--out-implib,libc.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

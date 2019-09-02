@@ -1,0 +1,227 @@
+MODULE main
+	VAR 
+		node : Node(t,19); --holds all nodes
+
+		edge0 : Edge(AMR,BOB,TRUE,TRUE);
+		addEdge0 : addEdge(node,edge0,0);
+		edge1 : Edge(AMR,ELI,FALSE,TRUE);
+		addEdge1 : addEdge(node,edge1,1);
+		edge2 : Edge(AMR,GOG,TRUE,TRUE);
+		addEdge2 : addEdge(node,edge2,2);
+		edge3 : Edge(BOB,CAT,TRUE,TRUE);
+		addEdge3 : addEdge(node,edge3,3);
+		edge4 : Edge(BOB,ELI,TRUE,FALSE);
+		addEdge4 : addEdge(node,edge4,4);
+		edge5 : Edge(BOB,GOG,TRUE,TRUE);
+		addEdge5 : addEdge(node,edge5,5);
+		edge6 : Edge(CAT,BOB,TRUE,TRUE);
+		addEdge6 : addEdge(node,edge6,6);
+		edge7 : Edge(CAT,GOG,TRUE,FALSE);
+		addEdge7 : addEdge(node,edge7,7);
+		edge8 : Edge(DOV,AMR,TRUE,FALSE);
+		addEdge8 : addEdge(node,edge8,8);
+		edge9 : Edge(DOV,ELI,TRUE,FALSE);
+		addEdge9 : addEdge(node,edge9,9);
+		edge10 : Edge(ELI,AMR,TRUE,FALSE);
+		addEdge10 : addEdge(node,edge10,10);
+		edge11 : Edge(ELI,BOB,FALSE,FALSE);
+		addEdge11 : addEdge(node,edge11,11);
+		edge12 : Edge(ELI,DOV,TRUE,TRUE);
+		addEdge12 : addEdge(node,edge12,12);
+		edge13 : Edge(ELI,GOG,FALSE,TRUE);
+		addEdge13 : addEdge(node,edge13,13);
+		edge14 : Edge(GOG,AMR,TRUE,TRUE);
+		addEdge14 : addEdge(node,edge14,14);
+		edge15 : Edge(GOG,CAT,TRUE,TRUE);
+		addEdge15 : addEdge(node,edge15,15);
+		edge16 : Edge(GOG,DOV,TRUE,FALSE);
+		addEdge16 : addEdge(node,edge16,16);
+		edge17 : Edge(Xa,Yaa,TRUE,FALSE);
+		addEdge17 : addEdge(node,edge17,17);
+		edge18 : Edge(Xa,Zaaa,FALSE,TRUE);
+		addEdge18 : addEdge(node,edge18,18);
+		edge19 : Edge(Yaa,Zaaa,TRUE,TRUE);
+		addEdge19 : addEdge(node,edge19,19);
+
+		nodeMotif : Node(f,2);--add size
+
+
+		c : c(checkOneEdge.randomEdge.o);
+		checkOneEdge : checkOneEdge(node, nodeMotif);
+		solEdge0 : getRandomEdge(node,19); 
+		addArray0: addArray(nodeMotif, solEdge0.o,0);
+		solEdge1 : getRandomEdge(node,19); 
+		addArray1: addArray(nodeMotif, solEdge1.o,1);
+		solEdge2 : maybeGetRandomEdge(node,19); 
+		addArray2: addArray(nodeMotif, solEdge2.o,2);
+LTLSPEC G!((solEdge0.o[0] = solEdge1.o[0]) & (solEdge2.o[0] = solEdge0.o[1] | solEdge2.o[0] = mNull) & (solEdge1.o[1] = solEdge2.o[1] | solEdge2.o[0] = mNull) & (solEdge0.o[2] = t) & (solEdge2.o[2] = t | solEdge2.o[0] = mNull) & (solEdge1.o[2] = f) & TRUE &! ((solEdge0.o[0] = Xa & solEdge0.o[1] = Yaa) & (solEdge1.o[0] = Xa & solEdge1.o[1] = Zaaa) & (solEdge2.o[0] = Yaa & solEdge2.o[1] = Zaaa) &  TRUE) &! ((solEdge0.o[0] = ELI & solEdge0.o[1] = AMR) & (solEdge1.o[0] = ELI & solEdge1.o[1] = BOB) & (solEdge2.o[0] = AMR & solEdge2.o[1] = BOB) &  TRUE) &! ((solEdge0.o[0] = Xa & solEdge0.o[1] = Yaa) & (solEdge1.o[0] = Xa & solEdge1.o[1] = Zaaa) & (solEdge2.o[0] = mNull & solEdge2.o[1] = mNull) &  TRUE) &! ((solEdge0.o[0] = ELI & solEdge0.o[1] = AMR) & (solEdge1.o[0] = ELI & solEdge1.o[1] = GOG) & (solEdge2.o[0] = mNull & solEdge2.o[1] = mNull) &  TRUE) &! ((solEdge0.o[0] = AMR & solEdge0.o[1] = BOB) & (solEdge1.o[0] = AMR & solEdge1.o[1] = ELI) & (solEdge2.o[0] = mNull & solEdge2.o[1] = mNull) &  TRUE));
+--------------------------------------
+--Module 2
+MODULE Node(nme, numEdgs)
+	VAR 
+		name : {t,f};
+		numEdges : 0..numEdgs;
+		edges : array 0..numEdgs of array 0..4 of {AMR, BOB, CAT, DOV, ELI, GOG, Xa, Yaa, Zaaa, t, f, eNull, mNull};
+	ASSIGN 
+		numEdges := numEdgs;
+		name := nme;
+------------------------------------------------
+MODULE c(p)
+	VAR
+		o : array 0..4 of {AMR, BOB, CAT, DOV, ELI, GOG, Xa, Yaa, Zaaa, t, f, eNull, mNull};
+	ASSIGN
+		o[0] := p[0];
+		o[1] := p[1];
+		o[2] := p[2];
+		o[3] := p[3];
+		o[4] := p[4];--------------------------------------
+--MODULE 3--Edge holds from, to, active, certain, used (in motif)
+--Module 3
+MODULE Edge(frm, too, acti, cert)
+	VAR
+		from : {AMR, BOB, CAT, DOV, ELI, GOG, Xa, Yaa, Zaaa, t, f, eNull, mNull};
+		to   : {AMR, BOB, CAT, DOV, ELI, GOG, Xa, Yaa, Zaaa, t, f, eNull, mNull};
+		act  : {t,f};
+		cer  : {t,f}; 	
+		used : {t,f};
+	ASSIGN  
+		from:= frm;
+		to  := too;
+		act := case 
+				acti = FALSE: f;
+				TRUE: t;
+				esac;
+		cer := case 
+				cert = FALSE: f;
+				TRUE: t;
+				esac;
+		used := f;
+--------------------------------------
+--Module 4
+MODULE getRandomEdge(node, numEdges)
+	VAR
+		position : 0..numEdges;
+		--o is for output
+		o : array 0..4 of {AMR, BOB, CAT, DOV, ELI, GOG, Xa, Yaa, Zaaa, t, f, eNull, mNull};
+	ASSIGN
+		o[0] := node.edges[position][0];
+		o[1] := node.edges[position][1];
+		o[2] := node.edges[position][2];
+		o[3] := node.edges[position][3];
+		o[4] := node.edges[position][4];
+--------------------------------------
+MODULE maybeGetRandomEdge(node,numEdges)--**
+	VAR
+		yes : {0, 1};
+		position : 0..numEdges;
+		--o is for output
+		o : array 0..4 of {AMR, BOB, CAT, DOV, ELI, GOG, Xa, Yaa, Zaaa, t, f, eNull, mNull};--**
+	ASSIGN
+		o[0] := case 
+					yes = 1 : node.edges[position][0];
+					TRUE : mNull; --motifNull
+					esac;
+		o[1] := case 
+					yes = 1  : node.edges[position][1];
+					TRUE : mNull; 
+					esac;
+		o[2] := case 
+					yes = 1  : node.edges[position][2];
+					TRUE : mNull; 
+					esac;
+		o[3] := case 
+					yes = 1  : node.edges[position][3];
+					TRUE : mNull; 
+					esac;
+		o[4] := case 
+					yes=1  : node.edges[position][4];
+					TRUE : mNull; 
+					esac;
+--------------------------------------------
+MODULE checkOneEdge(node, nodeMotif)
+	VAR 
+		randomEdge : getRandomEdge(node,19); 
+		valid : boolean;
+		validEdge : validEdge(randomEdge, nodeMotif);
+	ASSIGN 
+		valid := case
+					validEdge.valid = FALSE : FALSE;
+					TRUE : TRUE; 
+					esac;
+--------------------------------------------
+MODULE checkOneValidEdge(node, nodeMotif)
+	VAR 
+		randomEdge : getRandomEdge(node,19); 
+		valid : boolean;
+		validEdge : validCertainEdge(randomEdge, nodeMotif);
+	ASSIGN 
+		valid := case
+					validEdge.valid = FALSE : FALSE;
+					TRUE : TRUE; 
+					esac;---------------------------------------------
+--Module 6
+MODULE validEdge(randomEdge, nodeMotif)
+	VAR 
+		valid : boolean;
+		motifEdge1 : getRandomEdge(nodeMotif, 2);
+		motifEdge2 : getRandomEdge(nodeMotif, 2);
+	ASSIGN 
+		valid := case
+			--check the 'to' and 'from' of the randomEdge
+			((randomEdge.o[0] = motifEdge1.o[0]  |
+			  randomEdge.o[0] = motifEdge1.o[1]) &
+			 (randomEdge.o[1] = motifEdge2.o[0]  |
+			  randomEdge.o[1] = motifEdge2.o[1]))&!(
+			(randomEdge.o[0] = nodeMotif.edges[0][0] &
+			 randomEdge.o[1] = nodeMotif.edges[0][1])|
+			(randomEdge.o[0] = nodeMotif.edges[1][0] &
+			 randomEdge.o[1] = nodeMotif.edges[1][1])|
+			(randomEdge.o[0] = nodeMotif.edges[2][0] &
+			 randomEdge.o[1] = nodeMotif.edges[2][1])|
+			  FALSE) : FALSE;
+			 TRUE : TRUE;
+			 esac;
+---------------------------------------------
+--Module 6.5
+MODULE validCertainEdge(randomEdge, nodeMotif)
+	VAR 
+		valid : boolean;
+		motifEdge1 : getRandomEdge(nodeMotif, 2);
+		motifEdge2 : getRandomEdge(nodeMotif, 2);
+	ASSIGN 
+		valid := case
+			--check the 'to' and 'from' of the randomEdge
+			!(randomEdge.o[3] = f) & --if uncertain then fine
+			((randomEdge.o[0] = motifEdge1.o[0]  |
+			  randomEdge.o[0] = motifEdge1.o[1]) &
+			 (randomEdge.o[1] = motifEdge2.o[0]  |
+			  randomEdge.o[1] = motifEdge2.o[1]))&!(
+			(randomEdge.o[0] = nodeMotif.edges[0][0] &
+			 randomEdge.o[1] = nodeMotif.edges[0][1])|
+			(randomEdge.o[0] = nodeMotif.edges[1][0] &
+			 randomEdge.o[1] = nodeMotif.edges[1][1])|
+			(randomEdge.o[0] = nodeMotif.edges[2][0] &
+			 randomEdge.o[1] = nodeMotif.edges[2][1])|
+			  FALSE) : FALSE;
+			 TRUE : TRUE;
+			 esac;
+--------------------------------------------------------
+--Modules 7,8
+--STATIC
+MODULE addEdge(n, e, position)
+	ASSIGN
+		n.edges[position][0] := e.from;
+		n.edges[position][1] := e.to;
+		n.edges[position][2] := e.act;
+		n.edges[position][3] := e.cer;
+		n.edges[position][4] := e.used;
+-------------------------------------
+--STATIC
+MODULE addArray(n, e, position)
+	ASSIGN
+		n.edges[position][0] := e[0];
+		n.edges[position][1] := e[1];
+		n.edges[position][2] := e[2];
+		n.edges[position][3] := e[3];
+		n.edges[position][4] := e[4];
+-------------------------------------

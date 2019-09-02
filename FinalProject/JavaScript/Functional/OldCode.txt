@@ -1,0 +1,76 @@
+
+
+
+
+class Processor{
+    constructor(){
+    }
+
+
+    process(args){
+        console.log(process.argv);
+        //console.log(args)
+        //set up grep ad wc
+        let grep = false;
+        let wc = false;
+        let path = "";
+        if (args[2] == "grep"){
+            let searchString = args[3];
+            path = args[4];
+            let grep = true;
+            if (args.length = 7 && args[6] == "wc"){
+                let wc = true;
+            }
+        } else{
+            path = args[3];
+            wc = true;
+        }
+        console.log(`this is the path ${path}`);
+        //get text
+        // var FileReader = require('filereader');
+        // let fileReader = new FileReader();
+        // let url = path;
+        // let lines = fileReader.readAsText(url);
+        const fs = require('fs');
+        //let url = "file:"+path;
+        //const fileUrl = new URL(url);
+        let lines = fs.readFileSync(path);//.toString(path);
+        //console.log(lines);
+
+        //perform task based on grep/wc structure
+        if(grep && !wc){ //basic grep ex. "grep this silly.txt"
+            lines.filter(line => line.contains(searchString)).forEach(x=> console.log(x));
+                //.forEach(y=>System.out.println(y));
+        }
+        else if(grep && wc){//complicated grep ex.  "grep this silly.txt | wc"
+            lines.stream()
+                    .filter(line => line.contains(searchString))
+                    .map(line => line.toLowerCase())
+                    .flatMap(line => Stream.of(line.split("\\s+")))//split
+                    .map(word => word.replaceAll("[^a-zA-Z]", "").trim())
+                    .filter(line => !line.equals(""))//get rid of "" that were counted as words
+                    .sorted()//don't actually need
+                    //.forEach({})//TODO FIX THIS
+                    .forEach(y=>System.out.println(y));
+             // let map[word] = 1;
+             // map[word] = map[word]+1;
+             // map(word => )
+
+         else if(wc){//just wc. ex. "wc silly.text"
+            lines.stream()
+                    .map(line => line.toLowerCase())
+                    .flatMap(line => Stream.of(line.split("\\s+")))//split
+                    .map(word => word.replaceAll("[^a-zA-Z]", "").trim())
+                    .filter(line => !line.equals(""))//get rid of "" that were counted as words
+                    .sorted()//don't actually need
+                    //.forEach({})//TODO FIX THIS
+                    //Need a way to mao the values
+                    .forEach(y=>System.out.println(y));
+        }
+    }
+}
+let processor = new Processor();
+console.log(processor.process(process.argv));
+
+
+    

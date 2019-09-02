@@ -1,0 +1,128 @@
+MODULE changeSymbol(symbol, input)
+VAR
+	output: {"-", "+"};
+	mini : 20..25;
+	pls : 1..3;
+ASSIGN
+	mini   := 20; -- value of each sub
+	pls    := 1;  -- value of each add
+DEFINE
+	used := case
+		symbol = "+" & output = "-" : input - mini;
+		symbol = "-" & output = "+" : input - pls;
+		TRUE 						: input;
+		esac;
+-------------------------------------------------------
+MODULE changeNum(number, input) --input is 20*sub + 1*add
+VAR
+	output: {0,1,2,3,4,5,6,7,8,9};
+
+DEFINE
+	mini:= 20; -- value of each sub
+	pls := 1;  -- value of each add
+ASSIGN
+	output := {0,1,2,3,4,5,6,7,8,9};
+DEFINE
+	used := case
+		number = 0 & (output = 6) :  input - (1*mini) - (1*pls);
+		number = 0 & (output = 9) :  input - (1*mini) - (1*pls);
+		number = 0 & (output = 2) :  input - (2*mini) - (1*pls);
+		number = 0 & (output = 3) :  input - (2*mini) - (1*pls);
+		number = 0 & (output = 5) :  input - (2*mini) - (1*pls);
+		number = 0 & (output = 4) :  input - (3*mini) - (1*pls);
+
+		number = 1 & (output = 2) :  input - (1*mini) - (4*pls);
+		number = 1 & (output = 5) :  input - (1*mini) - (4*pls);
+		number = 1 & (output = 6) :  input - (1*mini) - (5*pls);
+
+		number = 2 & (output = 3) :  input - (1*mini) - (1*pls);
+		number = 2 & (output = 0) :  input - (1*mini) - (2*pls);
+		number = 2 & (output = 6) :  input - (1*mini) - (2*pls);
+		number = 2 & (output = 9) :  input - (1*mini) - (2*pls);
+		number = 2 & (output = 5) :  input - (2*mini) - (2*pls);
+		number = 2 & (output = 7) :  input - (3*mini) - (1*pls);
+		number = 2 & (output = 4) :  input - (3*mini) - (2*pls);
+		number = 2 & (output = 1) :  input - (4*mini) - (1*pls);
+
+		number = 3 & (output = 2) :  input - (1*mini) - (1*pls);
+		number = 3 & (output = 5) :  input - (1*mini) - (1*pls);
+		number = 3 & (output = 0) :  input - (1*mini) - (2*pls);
+		number = 3 & (output = 6) :  input - (1*mini) - (2*pls);
+		number = 3 & (output = 4) :  input - (2*mini) - (1*pls);
+
+		number = 4 & (output = 3) :  input - (1*mini) - (2*pls);
+		number = 4 & (output = 5) :  input - (1*mini) - (2*pls);
+		number = 4 & (output = 0) :  input - (1*mini) - (3*pls);
+		number = 4 & (output = 6) :  input - (1*mini) - (3*pls);
+		number = 4 & (output = 7) :  input - (2*mini) - (1*pls);
+		number = 4 & (output = 2) :  input - (2*mini) - (3*pls);
+
+		number = 5 & (output = 3) :  input - (1*mini) - (1*pls);
+		number = 5 & (output = 0) :  input - (1*mini) - (2*pls);
+		number = 5 & (output = 4) :  input - (2*mini) - (1*pls);
+		number = 5 & (output = 2) :  input - (2*mini) - (2*pls);
+		number = 5 & (output = 7) :  input - (3*mini) - (1*pls);
+		number = 5 & (output = 1) :  input - (4*mini) - (1*pls);
+
+		number = 6 & (output = 0) :  input - (1*mini) - (1*pls);
+		number = 6 & (output = 9) :  input - (1*mini) - (1*pls);
+		number = 6 & (output = 2) :  input - (2*mini) - (1*pls);
+		number = 6 & (output = 3) :  input - (2*mini) - (1*pls);
+		number = 6 & (output = 4) :  input - (3*mini) - (1*pls);
+		number = 6 & (output = 7) :  input - (4*mini) - (1*pls);
+		number = 6 & (output = 1) :  input - (5*mini) - (1*pls);
+
+		number = 7 & (output = 4) :  input - (1*mini) - (2*pls);
+		number = 7 & (output = 2) :  input - (1*mini) - (3*pls);
+		number = 7 & (output = 5) :  input - (1*mini) - (3*pls);
+		number = 7 & (output = 6) :  input - (1*mini) - (4*pls);
+
+		number = 9 & (output = 0) :  input - (1*mini) - (1*pls);
+		number = 9 & (output = 6) :  input - (1*mini) - (1*pls);
+		number = 9 & (output = 2) :  input - (2*mini) - (1*pls);
+		----------just adding------------
+		number = 0 & output= 8 : input - 1*pls;
+		number = 1 & output= 7 : input - 1*pls;
+		number = 1 & output= 4 : input - 2*pls;
+		number = 1 & output= 3 : input - 3*pls;
+		number = 1 & output= 9 : input - 4*pls;
+		number = 1 & output= 0 : input - 4*pls;
+		number = 1 & output= 8 : input - 5*pls;
+		number = 2 & output= 8 : input - 2*pls;
+		number = 3 & output= 9 : input - 1*pls;
+		number = 3 & output= 8 : input - 2*pls;
+		number = 4 & output= 9 : input - 2*pls;
+		number = 4 & output= 8 : input - 3*pls;
+		number = 5 & output= 6 : input - 1*pls;
+		number = 5 & output= 9 : input - 1*pls;
+		number = 5 & output= 8 : input - 2*pls;
+		number = 6 & output= 8 : input - 1*pls;
+		number = 7 & output= 3 : input - 2*pls;
+		number = 7 & output= 0 : input - 3*pls;
+		number = 7 & output= 9 : input - 3*pls;
+		number = 7 & output= 8 : input - 4*pls;
+		number = 9 & output= 8 : input - 1*pls;
+		--just subtracting-----
+		number = 0 & output= 7 : input - 3*mini;
+		number = 0 & output= 1 : input - 4*mini;
+		number = 3 & output= 7 : input - 2*mini;
+		number = 3 & output= 1 : input - 3*mini;
+		number = 4 & output= 1 : input - 2*mini;
+		number = 6 & output= 5 : input - 1*mini;
+		number = 7 & output= 1 : input - 1*mini;
+		number = 8 & output= 0 : input - 1*mini;
+		number = 8 & output= 6 : input - 1*mini;
+		number = 8 & output= 9 : input - 1*mini;
+		number = 8 & output= 2 : input - 2*mini;
+		number = 8 & output= 3 : input - 2*mini;
+		number = 8 & output= 5 : input - 2*mini;
+		number = 8 & output= 4 : input - 3*mini;
+		number = 8 & output= 7 : input - 4*mini;
+		number = 8 & output= 1 : input - 5*mini;
+		number = 9 & output= 3 : input - 1*mini;
+		number = 9 & output= 5 : input - 1*mini;
+		number = 9 & output= 4 : input - 2*mini;
+		number = 9 & output= 7 : input - 3*mini;
+		number = 9 & output= 1 : input - 4*mini;
+		TRUE : input;
+		esac;

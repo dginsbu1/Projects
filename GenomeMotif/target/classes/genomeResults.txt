@@ -1,0 +1,294 @@
+*** This is NuSMV 2.6.0 (compiled on Wed Oct 14 15:36:00 2015)
+*** Enabled addons are: compass
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Please report bugs to <Please report bugs to <nusmv-users@fbk.eu>>
+
+*** Copyright (c) 2010-2014, Fondazione Bruno Kessler
+
+*** This version of NuSMV is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of NuSMV is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+WARNING *** This version of NuSMV is linked to the zchaff SAT         ***
+WARNING *** solver (see http://www.princeton.edu/~chaff/zchaff.html). ***
+WARNING *** Zchaff is used in Bounded Model Checking when the         ***
+WARNING *** system variable "sat_solver" is set to "zchaff".          ***
+WARNING *** Notice that zchaff is for non-commercial purposes only.   ***
+WARNING *** NO COMMERCIAL USE OF ZCHAFF IS ALLOWED WITHOUT WRITTEN    ***
+WARNING *** PERMISSION FROM PRINCETON UNIVERSITY.                     ***
+WARNING *** Please contact Sharad Malik (malik@ee.princeton.edu)      ***
+WARNING *** for details.                                              ***
+
+-- specification  G !((((((solEdge0.o[0] = solEdge1.o[0] & (solEdge2.o[0] = solEdge0.o[1] | solEdge2.o[0] = mNull)) & (solEdge1.o[1] = solEdge2.o[1] | solEdge2.o[0] = mNull)) & solEdge0.o[2] = t) & (solEdge2.o[2] = t | solEdge2.o[0] = mNull)) & solEdge1.o[2] = f) & TRUE)    is false
+-- as demonstrated by the following execution sequence
+Trace Description: BMC Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    node.name = t
+    node.numEdges = 19
+    node.edges[0][0] = AMR
+    node.edges[0][1] = BOB
+    node.edges[0][2] = t
+    node.edges[0][3] = t
+    node.edges[0][4] = f
+    node.edges[1][0] = AMR
+    node.edges[1][1] = ELI
+    node.edges[1][2] = f
+    node.edges[1][3] = t
+    node.edges[1][4] = f
+    node.edges[2][0] = AMR
+    node.edges[2][1] = GOG
+    node.edges[2][2] = t
+    node.edges[2][3] = t
+    node.edges[2][4] = f
+    node.edges[3][0] = BOB
+    node.edges[3][1] = CAT
+    node.edges[3][2] = t
+    node.edges[3][3] = t
+    node.edges[3][4] = f
+    node.edges[4][0] = BOB
+    node.edges[4][1] = ELI
+    node.edges[4][2] = t
+    node.edges[4][3] = f
+    node.edges[4][4] = f
+    node.edges[5][0] = BOB
+    node.edges[5][1] = GOG
+    node.edges[5][2] = t
+    node.edges[5][3] = t
+    node.edges[5][4] = f
+    node.edges[6][0] = CAT
+    node.edges[6][1] = BOB
+    node.edges[6][2] = t
+    node.edges[6][3] = t
+    node.edges[6][4] = f
+    node.edges[7][0] = CAT
+    node.edges[7][1] = GOG
+    node.edges[7][2] = t
+    node.edges[7][3] = f
+    node.edges[7][4] = f
+    node.edges[8][0] = DOV
+    node.edges[8][1] = AMR
+    node.edges[8][2] = t
+    node.edges[8][3] = f
+    node.edges[8][4] = f
+    node.edges[9][0] = DOV
+    node.edges[9][1] = ELI
+    node.edges[9][2] = t
+    node.edges[9][3] = f
+    node.edges[9][4] = f
+    node.edges[10][0] = ELI
+    node.edges[10][1] = AMR
+    node.edges[10][2] = t
+    node.edges[10][3] = f
+    node.edges[10][4] = f
+    node.edges[11][0] = ELI
+    node.edges[11][1] = BOB
+    node.edges[11][2] = f
+    node.edges[11][3] = f
+    node.edges[11][4] = f
+    node.edges[12][0] = ELI
+    node.edges[12][1] = DOV
+    node.edges[12][2] = t
+    node.edges[12][3] = t
+    node.edges[12][4] = f
+    node.edges[13][0] = ELI
+    node.edges[13][1] = GOG
+    node.edges[13][2] = f
+    node.edges[13][3] = t
+    node.edges[13][4] = f
+    node.edges[14][0] = GOG
+    node.edges[14][1] = AMR
+    node.edges[14][2] = t
+    node.edges[14][3] = t
+    node.edges[14][4] = f
+    node.edges[15][0] = GOG
+    node.edges[15][1] = CAT
+    node.edges[15][2] = t
+    node.edges[15][3] = t
+    node.edges[15][4] = f
+    node.edges[16][0] = GOG
+    node.edges[16][1] = DOV
+    node.edges[16][2] = t
+    node.edges[16][3] = f
+    node.edges[16][4] = f
+    node.edges[17][0] = Xa
+    node.edges[17][1] = Yaa
+    node.edges[17][2] = t
+    node.edges[17][3] = f
+    node.edges[17][4] = f
+    node.edges[18][0] = Xa
+    node.edges[18][1] = Zaaa
+    node.edges[18][2] = f
+    node.edges[18][3] = t
+    node.edges[18][4] = f
+    node.edges[19][0] = Yaa
+    node.edges[19][1] = Zaaa
+    node.edges[19][2] = t
+    node.edges[19][3] = t
+    node.edges[19][4] = f
+    edge0.from = AMR
+    edge0.to = BOB
+    edge0.act = t
+    edge0.cer = t
+    edge0.used = f
+    edge1.from = AMR
+    edge1.to = ELI
+    edge1.act = f
+    edge1.cer = t
+    edge1.used = f
+    edge2.from = AMR
+    edge2.to = GOG
+    edge2.act = t
+    edge2.cer = t
+    edge2.used = f
+    edge3.from = BOB
+    edge3.to = CAT
+    edge3.act = t
+    edge3.cer = t
+    edge3.used = f
+    edge4.from = BOB
+    edge4.to = ELI
+    edge4.act = t
+    edge4.cer = f
+    edge4.used = f
+    edge5.from = BOB
+    edge5.to = GOG
+    edge5.act = t
+    edge5.cer = t
+    edge5.used = f
+    edge6.from = CAT
+    edge6.to = BOB
+    edge6.act = t
+    edge6.cer = t
+    edge6.used = f
+    edge7.from = CAT
+    edge7.to = GOG
+    edge7.act = t
+    edge7.cer = f
+    edge7.used = f
+    edge8.from = DOV
+    edge8.to = AMR
+    edge8.act = t
+    edge8.cer = f
+    edge8.used = f
+    edge9.from = DOV
+    edge9.to = ELI
+    edge9.act = t
+    edge9.cer = f
+    edge9.used = f
+    edge10.from = ELI
+    edge10.to = AMR
+    edge10.act = t
+    edge10.cer = f
+    edge10.used = f
+    edge11.from = ELI
+    edge11.to = BOB
+    edge11.act = f
+    edge11.cer = f
+    edge11.used = f
+    edge12.from = ELI
+    edge12.to = DOV
+    edge12.act = t
+    edge12.cer = t
+    edge12.used = f
+    edge13.from = ELI
+    edge13.to = GOG
+    edge13.act = f
+    edge13.cer = t
+    edge13.used = f
+    edge14.from = GOG
+    edge14.to = AMR
+    edge14.act = t
+    edge14.cer = t
+    edge14.used = f
+    edge15.from = GOG
+    edge15.to = CAT
+    edge15.act = t
+    edge15.cer = t
+    edge15.used = f
+    edge16.from = GOG
+    edge16.to = DOV
+    edge16.act = t
+    edge16.cer = f
+    edge16.used = f
+    edge17.from = Xa
+    edge17.to = Yaa
+    edge17.act = t
+    edge17.cer = f
+    edge17.used = f
+    edge18.from = Xa
+    edge18.to = Zaaa
+    edge18.act = f
+    edge18.cer = t
+    edge18.used = f
+    edge19.from = Yaa
+    edge19.to = Zaaa
+    edge19.act = t
+    edge19.cer = t
+    edge19.used = f
+    nodeMotif.name = f
+    nodeMotif.numEdges = 2
+    nodeMotif.edges[0][0] = AMR
+    nodeMotif.edges[0][1] = BOB
+    nodeMotif.edges[0][2] = t
+    nodeMotif.edges[0][3] = t
+    nodeMotif.edges[0][4] = f
+    nodeMotif.edges[1][0] = AMR
+    nodeMotif.edges[1][1] = ELI
+    nodeMotif.edges[1][2] = f
+    nodeMotif.edges[1][3] = t
+    nodeMotif.edges[1][4] = f
+    nodeMotif.edges[2][0] = mNull
+    nodeMotif.edges[2][1] = mNull
+    nodeMotif.edges[2][2] = mNull
+    nodeMotif.edges[2][3] = mNull
+    nodeMotif.edges[2][4] = mNull
+    c.o[0] = GOG
+    c.o[1] = DOV
+    c.o[2] = t
+    c.o[3] = f
+    c.o[4] = f
+    checkOneEdge.randomEdge.position = 16
+    checkOneEdge.randomEdge.o[0] = GOG
+    checkOneEdge.randomEdge.o[1] = DOV
+    checkOneEdge.randomEdge.o[2] = t
+    checkOneEdge.randomEdge.o[3] = f
+    checkOneEdge.randomEdge.o[4] = f
+    checkOneEdge.valid = TRUE
+    checkOneEdge.validEdge.valid = TRUE
+    checkOneEdge.validEdge.motifEdge1.position = 0
+    checkOneEdge.validEdge.motifEdge1.o[0] = AMR
+    checkOneEdge.validEdge.motifEdge1.o[1] = BOB
+    checkOneEdge.validEdge.motifEdge1.o[2] = t
+    checkOneEdge.validEdge.motifEdge1.o[3] = t
+    checkOneEdge.validEdge.motifEdge1.o[4] = f
+    checkOneEdge.validEdge.motifEdge2.position = 2
+    checkOneEdge.validEdge.motifEdge2.o[0] = mNull
+    checkOneEdge.validEdge.motifEdge2.o[1] = mNull
+    checkOneEdge.validEdge.motifEdge2.o[2] = mNull
+    checkOneEdge.validEdge.motifEdge2.o[3] = mNull
+    checkOneEdge.validEdge.motifEdge2.o[4] = mNull
+    solEdge0.position = 0
+    solEdge0.o[0] = AMR
+    solEdge0.o[1] = BOB
+    solEdge0.o[2] = t
+    solEdge0.o[3] = t
+    solEdge0.o[4] = f
+    solEdge1.position = 1
+    solEdge1.o[0] = AMR
+    solEdge1.o[1] = ELI
+    solEdge1.o[2] = f
+    solEdge1.o[3] = t
+    solEdge1.o[4] = f
+    solEdge2.yes = 0
+    solEdge2.position = 4
+    solEdge2.o[0] = mNull
+    solEdge2.o[1] = mNull
+    solEdge2.o[2] = mNull
+    solEdge2.o[3] = mNull
+    solEdge2.o[4] = mNull
