@@ -1,7 +1,11 @@
 This folder contains implemenentations of the grep and wc conatins on a desired text file
 written in Java, C, javascript, and Python. Additionally, it is written in both Functional and Object Oriented programming in three of the four languages
-To use, download the code. After compiling, run one of the following classes with the path directory as the argument
+To use, download the code. After compiling, run one of the following classes with the proper command
 use "|" with the quotes when doing the grep and wc
+example of properer command:
+wc  PATH/TO/TEXT/FILE
+grep WORD PATH/TO/TEXT/FILE
+grep WORD PATH/TO/TEXT/FILE | wc
 
 JAVA:
   OBJECT ORIENTED:
